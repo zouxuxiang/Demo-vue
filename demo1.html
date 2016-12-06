@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>导航栏切换</title>
+	<style>
+	*{
+	margin:0;
+	padding:0;
+	}
+
+	body{
+		font:15px/1.3 'Open Sans', sans-serif;
+		color: #5e5b64;
+		text-align:center;
+	}
+
+	a, a:visited {
+		outline:none;
+		color:#389dc1;
+	}
+
+	a:hover{
+		text-decoration:none;
+	}
+
+	section, footer, header, aside, nav{
+		display: block;
+	}
+
+	nav{
+		display:inline-block;
+		margin:60px auto 45px;
+		background-color:orange;
+		box-shadow:0 1px 1px #ccc;
+		border-radius:2px;
+	}
+
+	nav a{
+		display:inline-block;
+		padding: 18px 30px;
+		color:#fff !important;
+		font-weight:bold;
+		font-size:16px;
+		text-decoration:none !important;
+		line-height:1;
+		text-transform: uppercase;
+		background-color:transparent;
+
+		-webkit-transition:background-color 0.25s;
+		-moz-transition:background-color 0.25s;
+		transition:background-color 0.25s;
+	}
+
+	nav a:first-child{
+		border-radius:2px 0 0 2px;
+	}
+
+	nav a:last-child{
+		border-radius:0 2px 2px 0;
+	}
+
+	nav.home .home,
+	nav.content1 .content1,
+	nav.content2 .content2,
+	nav.content3 .content3{
+		background-color:red;
+	}
+	#content{
+		height: 300px;
+		width: 700px;
+		margin: 10px auto;
+		background: green;
+		font-size: 22px;
+		font-weight: bold;
+		color: #ddd;
+	}
+	</style>
+</head>
+<body>
+	<div id="main">
+		<nav v-bind:class="active" v-on:click.prevent>
+
+			<a href="#" class="home" v-on:click="makeActive('home')">
+				主页
+			</a>
+			<a href="#" class="content1" v-on:click="makeActive('content1')">
+				内容1
+			</a>
+			<a href="#" class="content2" v-on:click="makeActive('content2')">
+				内容2
+			</a>
+			<a href="#" class="content3" v-on:click="makeActive('content3')">
+				内容3
+			</a>
+		</nav>
+
+		<div id="content">
+			<b>{{active}}</b>
+		</div>
+	</div>
+
+	<script src="js/vue.js"></script>
+
+	<script>
+		var demo = new Vue({
+
+			el: '#main',
+
+			data: {
+				active: 'home'
+			},
+
+			methods: {
+				makeActive: function(item){
+					this.active = item;
+				}
+			}
+		});
+	</script>
+</body>
+</html>
